@@ -143,7 +143,7 @@ bool end(int x, int y) {
 		}
 	}
 	if (col == 3 || row == 3 || diag == 3 || rdiag == 3) {
-		cout << "Winner: Player " << array[x][y] << endl << endl;
+		cout << "*** Winner: Player " << array[x][y] << " ***"<< endl << endl;
 		print();
 		cout << endl << "New game? (Y/N): ";
 		cin >> choice;
