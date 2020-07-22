@@ -30,7 +30,7 @@ void inputchar() {
 			cout << endl << "Invalid input. Try again." << endl << endl;
 		}
 		if (x > 2 || x < 0) {
-			cout << "Please enter number between 0-2" << endl << endl;
+			cout << endl << "Please enter number between 0-2" << endl << endl;
 		}
 	}
 	correct = false;
@@ -44,7 +44,7 @@ void inputchar() {
 			cout << endl << "Invalid input. Try again." << endl << endl;
 		}
 		if (y > 2 || y < 0) {
-			cout << "Please enter number between 0-2" << endl << endl;
+			cout << endl << "Please enter number between 0-2" << endl << endl;
 		}
 	}
 	correct = false;
