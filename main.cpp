@@ -8,6 +8,14 @@ bool correct = false;
 int x, y;
 string input;
 
+void restart() {
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			array[i][j] = '-';
+		}
+	}
+}
+
 void inputchar() {
 	correct = false;
 	while (!correct) {
@@ -128,14 +136,6 @@ bool end(int x, int y) {
 		return true;
 	}
 	return false;
-}
-
-void restart() {
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			array[i][j] = '-';
-		}
-	}
 }
 
 int main() {
