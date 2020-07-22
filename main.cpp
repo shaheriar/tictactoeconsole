@@ -4,80 +4,47 @@
 using namespace std;
 
 char array[3][3] = {{'-','-','-'}, {'-','-','-'}, {'-','-','-'}};
-void print();
-bool end(int x, int y);
-bool draw();
+bool correct = false;
+int x, y;
 void restart();
+string input;
 
-int main() {
-	char prev = 'X';
-	char next = 'O';
-	bool done = false;
-	bool correct = false;
-	string input;
-	int x, y;
-	cout << endl << " ===TIC TAC TOE===" << endl << endl;
-	while (!done) {
-		print();
-		
-		if (!done) {
-			cout << endl << "it is Player " << next << "'s turn" << endl << endl;
-		}
-		
-		while (!correct) {
-			cout << "enter row (0-2): ";
+void inputchar() {
+	correct = false;
+	while (!correct) {
+		cout << "enter row (0-2): ";
+		cin >> input;
+		try {
+			x = stoi(input); 
+			if (x < 3 && x > -1) { correct = true; }
+		} catch(const invalid_argument& error) {
+			cout << endl << "Invalid input. Try again: ";
 			cin >> input;
-			try {
-				x = stoi(input); 
-				if (x < 3 && x > -1) { correct = true; }
-			} catch(const invalid_argument& error) {
-				cout << endl << "Invalid input. Try again: ";
-				cin >> input;
-			}
-			if (x > 2 || x < 0) {
-				cout << "Please enter number between 0-2" << endl << endl;
-			}
 		}
-		
-		correct = false;
-		
-		while (!correct) {
-			cout << "enter column (0-2): ";
-			cin >> input;
-			try {
-				y = stoi(input); 
-				if (y < 3 && y > -1) { correct = true; }
-			} catch(const invalid_argument& error) {
-				cout << endl << "Invalid input. Try again: ";
-				cin >> input;
-			}
-			if (y > 2 || y < 0) {
-				cout << "Please enter number between 0-2" << endl << endl;
-			}
+		if (x > 2 || x < 0) {
+			cout << "Please enter number between 0-2" << endl << endl;
 		}
-		
-		correct = false;
-		cout << endl;
-
-		if (array[x][y] == '-') {
-			if (prev == 'X') {
-				next = prev;
-				array[x][y] = 'O';
-				prev = 'O';
-			} else {
-				next = prev;
-				array[x][y] = 'X';
-				prev = 'X';
-			}
-			
-		}
-		done = end(x, y) || draw();
 	}
-	return 0;
+	correct = false;
+	while (!correct) {
+		cout << "enter column (0-2): ";
+		cin >> input;
+		try {
+			y = stoi(input); 
+			if (y < 3 && y > -1) { correct = true; }
+		} catch(const invalid_argument& error) {
+			cout << endl << "Invalid input. Try again: ";
+			cin >> input;
+		}
+		if (y > 2 || y < 0) {
+			cout << "Please enter number between 0-2" << endl << endl;
+		}
+	}
+	correct = false;
 }
 
 void print() {
-	cout << " =================" << endl << endl;
+	cout << endl << " =================" << endl << endl;
 	for (int i = 0; i < 3; i++) {
 		cout << " ";
 		for (int j = 0; j < 3; j++) {
@@ -143,7 +110,7 @@ bool end(int x, int y) {
 		}
 	}
 	if (col == 3 || row == 3 || diag == 3 || rdiag == 3) {
-		cout << "*** Winner: Player " << array[x][y] << " ***"<< endl << endl;
+		cout << endl << "*** Winner: Player " << array[x][y] << " ***"<< endl << endl;
 		print();
 		cout << endl << "New game? (Y/N): ";
 		cin >> choice;
@@ -170,4 +137,37 @@ void restart() {
 			array[i][j] = '-';
 		}
 	}
+}
+
+int main() {
+	char prev = 'X';
+	char next = 'O';
+	bool done = false;
+	bool correct = false;
+	cout << endl << " ===TIC TAC TOE===" << endl;
+	while (!done) {
+		print();
+		
+		if (!done) {
+			cout << endl << "it is Player " << next << "'s turn" << endl << endl;
+		}
+		
+		inputchar();
+
+		if (array[x][y] == '-') {
+			if (prev == 'X') {
+				next = prev;
+				array[x][y] = 'O';
+				prev = 'O';
+			} else {
+				next = prev;
+				array[x][y] = 'X';
+				prev = 'X';
+			}
+			done = end(x, y) || draw();
+		} else {
+			cout << endl << "Slot unavailable, try again." << endl << endl;
+		}
+	}
+	return 0;
 }
