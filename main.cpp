@@ -6,6 +6,8 @@ using namespace std;
 char array[3][3] = {{'-','-','-'}, {'-','-','-'}, {'-','-','-'}};
 bool correct = false;
 int x, y;
+int scorex = 0;
+int scoreo = 0;
 string input;
 
 void restart() {
@@ -117,7 +119,14 @@ bool end(int x, int y) {
 		}
 	}
 	if (col == 3 || row == 3 || diag == 3 || rdiag == 3) {
-		cout << endl << "*** Winner: Player " << array[x][y] << " ***"<< endl << endl;
+		cout << endl << "*** Winner: Player " << player << " ***"<< endl << endl;
+		if (player == 'X') {
+			scorex++;
+		}
+		else {
+			scoreo++;
+		}
+		cout << "Player X Score: " << scorex << endl << "Player O Score: " << scoreo << endl;
 		print();
 		cout << endl << "New game? (Y/N): ";
 		cin >> choice;
