@@ -6,7 +6,6 @@ using namespace std;
 char array[3][3] = {{'-','-','-'}, {'-','-','-'}, {'-','-','-'}};
 bool correct = false;
 int x, y;
-void restart();
 string input;
 
 void inputchar() {
