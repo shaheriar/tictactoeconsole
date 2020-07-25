@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -51,6 +52,7 @@ void inputchar() {
 }
 
 void print() {
+	cout << endl << " ===TIC TAC TOE===" << endl;
 	cout << endl << " =================" << endl << endl;
 	for (int i = 0; i < 3; i++) {
 		cout << " ";
@@ -79,8 +81,10 @@ bool draw() {
 			}
 		}
 	}
-	cout << "Draw" << endl << endl;
+	system("clear");
 	print();
+	cout << endl << "Draw" << endl << endl;
+	cout << "Player X Score: " << scorex << endl << "Player O Score: " << scoreo << endl;
 	cout << endl << "New game? (Y/N): ";
 	cin >> choice;
 	while ((choice != 'Y' && choice != 'y') && (choice != 'N' && choice != 'n')) {
@@ -117,6 +121,8 @@ bool end(int x, int y) {
 		}
 	}
 	if (col == 3 || row == 3 || diag == 3 || rdiag == 3) {
+		system("clear");
+		print();
 		cout << endl << "*** Winner: Player " << player << " ***"<< endl << endl;
 		if (player == 'X') {
 			scorex++;
@@ -125,7 +131,6 @@ bool end(int x, int y) {
 			scoreo++;
 		}
 		cout << "Player X Score: " << scorex << endl << "Player O Score: " << scoreo << endl;
-		print();
 		cout << endl << "New game? (Y/N): ";
 		cin >> choice;
 		while ((choice != 'Y' && choice != 'y') && (choice != 'N' && choice != 'n')) {
@@ -150,8 +155,8 @@ int main() {
 	char next = 'O';
 	bool done = false;
 	bool correct = false;
-	cout << endl << " ===TIC TAC TOE===" << endl;
 	while (!done) {
+		system("clear");
 		print();
 		
 		if (!done) {
