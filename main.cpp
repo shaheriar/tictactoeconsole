@@ -10,6 +10,7 @@ int x, y;
 int scorex = 0;
 int scoreo = 0;
 string input;
+bool signal = false;
 
 void restart() {
 	for (int i = 0; i < 3; i++) {
@@ -158,13 +159,13 @@ int main() {
 	while (!done) {
 		system("clear");
 		print();
-		
 		if (!done) {
 			cout << endl << "it is Player " << next << "'s turn" << endl << endl;
 		}
-		
+		if (signal) {
+			cout << "Slot taken. Try again." << endl << endl;
+		}
 		inputchar();
-
 		if (array[x][y] == '-') {
 			if (prev == 'X') {
 				next = prev;
@@ -175,9 +176,11 @@ int main() {
 				array[x][y] = 'X';
 				prev = 'X';
 			}
+			signal = false;
 			done = end(x, y) || draw();
-		} else {
-			cout << endl << "Slot unavailable, try again." << endl << endl;
+		}
+		else {
+			signal = true;
 		}
 	}
 	return 0;
